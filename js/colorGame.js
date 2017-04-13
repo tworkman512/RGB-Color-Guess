@@ -1,9 +1,57 @@
+var numOfSquares = 6;
 var colors = generateRandomColors(6);
 var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor();
 var colorDisplay = document.querySelector(".colorDisplay");
 var messageDisplay = document.querySelector(".message");
 var h1 = document.querySelector('h1');
+var resetButton = document.querySelector(".reset-btn");
+var easyButton = document.querySelector(".easy-btn");
+var hardButton = document.querySelector(".hard-btn");
+
+
+easyButton.addEventListener("click", function(){
+	hardButton.classList.remove("selected");
+	easyButton.classList.add("selected");
+	numOfSquares = 3;
+	colors = generateRandomColors(numOfSquares);
+	pickedColor = pickColor();
+	colorDisplay.textContent = pickedColor;
+	for(var i = 0; i < squares.length; i++){
+		if(colors[i]){
+			squares[i].style.background = colors[i];
+		} else {
+			squares[i].style.display = "none";
+		}
+	}
+});
+
+hardButton.addEventListener("click", function(){
+	hardButton.classList.add("selected");
+	easyButton.classList.remove("selected");
+	numOfSquares = 6;
+	colors = generateRandomColors(numOfSquares);
+	pickedColor = pickColor();
+	colorDisplay.textContent = pickedColor;
+	for(var i = 0; i < squares.length; i++){
+		squares[i].style.background = colors[i];
+		squares[i].style.display = "block";
+	}
+});
+
+resetButton.addEventListener("click", function(){
+	//generate all new colors
+	colors = generateRandomColors(numOfSquares);
+	//pick new random color from array
+	pickedColor = pickColor();
+	//change colorDisplay to match picked color
+	colorDisplay.textContent = pickedColor;
+	//change colors of squares
+	for(var i = 0; i < squares.length; i++){
+		squares[i].style.background = colors[i];
+	}
+	h1.style.background = "#232323";
+});
 
 colorDisplay.textContent = pickedColor;
 
@@ -19,6 +67,7 @@ for(var i = 0; i < squares.length; i++){
 		//compare color to pickedColor
 		if (clickedColor === pickedColor) {
 			messageDisplay.textContent = "Correct!";
+			resetButton.textContent = "Play Again?";
 			changeColors(clickedColor);
 			h1.style.background =clickedColor;
 		} else {

@@ -6,10 +6,6 @@ h1 {
 	color: white;
 }
 
-span {
-	color: white;
-}
-
 .container {
 	margin: 0 auto;
 	max-width: 600px;
@@ -21,4 +17,15 @@ span {
 	background: purple;
 	padding-bottom: 30%;
 	float: left;
+}
+
+.stripe {
+	background-color: white;
+	height: 30px;
+	text-align: center;
+	color: black;
+}
+
+.selected {
+	background: blue;
 }
